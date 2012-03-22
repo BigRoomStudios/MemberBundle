@@ -49,6 +49,40 @@ class MemberForm extends EditFormWidget
 					),
 				),
 			),
+
+			'street' => array(
+			
+				'type' => 'group',
+				'fields' => array(
+			
+					'street_1' => array(
+						'type' => 'text',
+					),
+					
+					'street_2' => array(
+						'type' => 'text',
+					),
+				),
+			),
+
+			'city' => array(
+			
+				'type' => 'group',
+				'fields' => array(
+			
+					'city' => array(
+						'type' => 'text',
+					),
+					
+					'state' => array(
+						'type' => 'text',
+					),
+
+					'zip' => array(
+						'type' => 'text',
+					),
+				),
+			),
 			
 			'password' => array(
 			
@@ -56,11 +90,8 @@ class MemberForm extends EditFormWidget
 				'fields' => array(
 			
 					'new_password' => array(
-						'type' => 'text',
+						'type' => 'password',
 						'required' => false,
-						'attr' => array(
-							'class' => 'valid-alpha'
-						),
 					),
 				),
 			),	

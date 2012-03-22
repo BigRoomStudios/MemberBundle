@@ -39,17 +39,22 @@ class MemberAdminController extends AdminController
 		
 			'first_name' => array(
 				'type' => 'text',
-				'required' => false,
 			),
 			
 			'last_name' => array(
 				'type' => 'text',
-				'required' => false,
 			),
 			
 			'email' => array(
 				'type' => 'text',
-				'required' => false,
+			),
+
+			'city' => array(
+				'type' => 'text',
+			),
+
+			'state' => array(
+				'type' => 'text',
 			),
 		);
 		

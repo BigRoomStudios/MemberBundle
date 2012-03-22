@@ -28,7 +28,7 @@ class MemberList extends ListWidget
 					'params' => array('id'),
 				),
 				'label' => 'edit',
-				'width' => 100,
+				'width' => 60,
 				'nonentity' => true,
 			),
 			
@@ -40,13 +40,17 @@ class MemberList extends ListWidget
 				'type' => 'text',
 			),
 			
+			'email' => array(
+				'type' => 'email',
+				//'width' => 100,
+			),
+
 			'city' => array(
 				'type' => 'text',
 			),
 			
-			'email' => array(
-				'type' => 'email',
-				//'width' => 100,
+			'state' => array(
+				'type' => 'text',
 			),
 		);
 		
