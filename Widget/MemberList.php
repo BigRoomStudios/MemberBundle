@@ -40,6 +40,10 @@ class MemberList extends ListWidget
 				'type' => 'text',
 			),
 			
+			'city' => array(
+				'type' => 'text',
+			),
+			
 			'email' => array(
 				'type' => 'email',
 				//'width' => 100,
