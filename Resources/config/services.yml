@@ -1,0 +1,7 @@
+parameters:
+#    brs_member.example.class: BRS\MemberBundle\Example
+
+services:
+#    brs_member.example:
+#        class: %brs_member.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
