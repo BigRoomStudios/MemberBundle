@@ -21,7 +21,7 @@ use BRS\MemberBundle\Widget\MemberForm;
 /**
  * Member controller.
  *
- * @Route("/member")
+ * @Route("/admin/member")
  */
 class MemberAdminController extends AdminController
 {
