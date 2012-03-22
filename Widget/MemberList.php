@@ -24,7 +24,7 @@ class MemberList extends ListWidget
 			'edit' => array(
 				'type' => 'link',
 				'route' => array(
-					'name' => 'brs_admin_member_edit',
+					'name' => 'brs_member_memberadmin_edit',
 					'params' => array('id'),
 				),
 				'label' => 'edit',
