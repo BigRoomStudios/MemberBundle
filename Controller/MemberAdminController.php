@@ -39,10 +39,16 @@ class MemberAdminController extends AdminController
 		
 			'first_name' => array(
 				'type' => 'text',
+				'attr' => array(
+					'class' => 'small',
+				),
 			),
 			
 			'last_name' => array(
 				'type' => 'text',
+				'attr' => array(
+					'class' => 'small',
+				),
 			),
 			
 			'email' => array(
@@ -51,10 +57,16 @@ class MemberAdminController extends AdminController
 
 			'city' => array(
 				'type' => 'text',
+				'attr' => array(
+					'class' => 'small',
+				),
 			),
 
 			'state' => array(
 				'type' => 'text',
+				'attr' => array(
+					'class' => 'tiny',
+				),
 			),
 		);
 		
@@ -84,15 +96,5 @@ class MemberAdminController extends AdminController
 		$this->addView('new', $edit_widget);
 		$this->addView('edit', $edit_widget);
 		
-	}
-	
-	public function getVars()
-	{
-		$vars = parent::getVars();
-		
-		$vars['widget_class'] = 'FormWidget';
-					
-		return $vars;
-	}
-	
+	}	
 }
