@@ -27,9 +27,11 @@ class MemberList extends ListWidget
 					'name' => 'brs_member_memberadmin_edit',
 					'params' => array('id'),
 				),
+				'nav' => true,
 				'label' => 'edit',
-				'width' => 60,
+				'width' => 55,
 				'nonentity' => true,
+				'class' => 'btn btn-mini',
 			),
 			
 			'first_name' => array(
