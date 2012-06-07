@@ -5,6 +5,8 @@ namespace BRS\MemberBundle\Widget;
 use BRS\CoreBundle\Core\Widget\EditFormWidget;
 use BRS\CoreBundle\Core\Widget\FormWidget;
 use BRS\CoreBundle\Core\Utility;
+use BRS\MemberBundle\Form\GenderType;
+use BRS\FileBundle\Form\FileUploadType;
 
 /**
  * Member form widget
@@ -23,7 +25,16 @@ class MemberForm extends EditFormWidget
 			
 				'type' => 'group',
 				'fields' => array(
-			
+					
+					'file_id' => array(
+						'type' => new FileUploadType(),
+						'required' => false,
+						'attr' => array(
+							'max_file_size' => (int)ini_get('upload_max_filesize') * 1024 * 1024,
+						),
+						'multiple' => false,
+					),
+					
 					'first_name' => array(
 						'type' => 'text',
 						'required' => true,

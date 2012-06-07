@@ -3,6 +3,8 @@
 namespace BRS\MemberBundle\Entity;
 
 use BRS\CoreBundle\Core\SuperEntity;
+use BRS\FileBundle\Entity\File;
+
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -113,7 +115,20 @@ class Member extends SuperEntity implements UserInterface
      * @ORM\Column(name="date_updated", type="datetime", nullable=TRUE)
      */
     public $date_updated;
+	
+	/**
+     * @var integer $file_id
+     *
+     * @ORM\Column(name="file_id", type="integer", nullable=TRUE)
+     */
+    public $file_id;
 
+	/**
+     * @ORM\OneToOne(targetEntity="BRS\FileBundle\Entity\File")
+     * @ORM\JoinColumn(name="file_id", referencedColumnName="id")
+     */
+    public $file;
+	
 	
 	public function __construct(){
 		
@@ -449,4 +464,60 @@ class Member extends SuperEntity implements UserInterface
     {
         return $this->date_updated;
     }
+	
+	/**
+     * Set file_id
+     *
+     * @param integer $file_id
+     */
+    public function setFileId($file_id)
+    {
+        $this->file_id = $file_id;
+    }
+
+    /**
+     * Get file_id
+     *
+     * @return integer 
+     */
+    public function getFileId()
+    {
+        return $this->file_id;
+    }
+
+    /**
+     * Set file
+     *
+     * @param BRS\FileBundle\Entity\File $file
+     */
+    public function setfile(\BRS\FileBundle\Entity\File $file)
+    {
+        $this->file = $file;
+    }
+
+    /**
+     * Get file
+     *
+     * @return BRS\FileBundle\Entity\File
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+	
+	
+	public function setValue($key, $value){
+		
+		parent::setValue($key, $value);
+		
+		if($key == 'file_id'){
+			
+			if($value){
+			
+				$file = $this->em->getReference('\BRS\FileBundle\Entity\File', $value);
+				
+				$this->setfile($file);
+			}
+		}
+	}
 }
