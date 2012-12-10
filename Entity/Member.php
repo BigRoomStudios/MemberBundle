@@ -12,9 +12,9 @@ use Doctrine\ORM\Mapping as ORM;
  * BRS\CoreBundle\Entity\Member
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="BRS\MemberBundle\Entity\MemberRepository")
  */
-class Member extends SuperEntity implements UserInterface
+class Member extends SuperEntity implements UserInterface, \Serializable
 {
     /**
      * @var integer $id
@@ -117,6 +117,20 @@ class Member extends SuperEntity implements UserInterface
     public $date_updated;
 	
 	/**
+     * @var integer $role
+     *
+     * @ORM\Column(name="role", type="string", length=255, nullable=TRUE)
+     */
+    public $role;
+	
+	/**
+     * @var integer $salt
+     *
+     * @ORM\Column(name="salt", type="string", length=255, nullable=TRUE)
+     */
+    protected $salt;
+	
+	/**
      * @var integer $file_id
      *
      * @ORM\Column(name="file_id", type="integer", nullable=TRUE)
@@ -135,7 +149,13 @@ class Member extends SuperEntity implements UserInterface
 		$now = new \DateTime;
 		
 		$this->setDateAdded($now);
+		
+		$this->role = 'ROLE_USER';
+		
+		$this->salt = md5(uniqid(null, true));
 	}
+	
+	 
 	
 	/*  User Interface Mapping
 	 * -------------------------------------------------------------------------------*/
@@ -157,8 +177,29 @@ class Member extends SuperEntity implements UserInterface
      */
     public function getRoles()
     {
-        return array('ROLE_ADMIN');
+        return array($this->getRole());
     }
+	
+	/**
+     * Get Role
+     *
+     * @return string 
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+	
+	/**
+     * Set Roles
+     *
+     * @param string $role 
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
+    }
+	
 	
 	/**
      * Get Salt
@@ -167,7 +208,7 @@ class Member extends SuperEntity implements UserInterface
      */
     public function getSalt()
     {
-        return "saltysaltsalt";
+        return $this->salt;
     }
     
     /**
@@ -187,6 +228,26 @@ class Member extends SuperEntity implements UserInterface
      */
     public function equals(UserInterface $user) {
         return;
+    }
+	
+	/**
+     * @see \Serializable::serialize()
+     */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+        ));
+    }
+
+    /**
+     * @see \Serializable::unserialize()
+     */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+        ) = unserialize($serialized);
     }
 	
 	
@@ -486,16 +547,6 @@ class Member extends SuperEntity implements UserInterface
     }
 
     /**
-     * Set file
-     *
-     * @param BRS\FileBundle\Entity\File $file
-     */
-    public function setfile(\BRS\FileBundle\Entity\File $file)
-    {
-        $this->file = $file;
-    }
-
-    /**
      * Get file
      *
      * @return BRS\FileBundle\Entity\File
@@ -520,4 +571,14 @@ class Member extends SuperEntity implements UserInterface
 			}
 		}
 	}
+
+    /**
+     * Set file
+     *
+     * @param BRS\FileBundle\Entity\File $file
+     */
+    public function setFile(\BRS\FileBundle\Entity\File $file)
+    {
+        $this->file = $file;
+    }
 }

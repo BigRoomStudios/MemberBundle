@@ -26,14 +26,14 @@ class MemberForm extends EditFormWidget
 				'type' => 'group',
 				'fields' => array(
 					
-					'file_id' => array(
+					/*'file_id' => array(
 						'type' => new FileUploadType(),
 						'required' => false,
 						'attr' => array(
 							'max_file_size' => (int)ini_get('upload_max_filesize') * 1024 * 1024,
 						),
 						'multiple' => false,
-					),
+					),*/
 					
 					'first_name' => array(
 						'type' => 'text',
@@ -104,8 +104,15 @@ class MemberForm extends EditFormWidget
 						'type' => 'password',
 						'required' => false,
 					),
+					
+					'role' => array(
+						'type' => 'choice',
+						'choices'=>array('ROLE_USER'=>'User', 'ROLE_ADMIN'=>'Admin'),
+					),
 				),
-			),	
+			),
+			
+			
 		);
 		
 		/*$edit_fields = array(
