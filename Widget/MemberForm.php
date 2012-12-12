@@ -108,12 +108,16 @@ class MemberForm extends EditFormWidget
 					'role' => array(
 						'type' => 'choice',
 						'choices'=>array('ROLE_USER'=>'User', 'ROLE_ADMIN'=>'Admin'),
+						'allow' => 'ROLE_ADMIN',
 					),
 				),
 			),
 			
 			
 		);
+		
+		
+		
 		
 		/*$edit_fields = array(
 			
