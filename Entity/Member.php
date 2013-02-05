@@ -52,7 +52,21 @@ class Member extends SuperEntity implements UserInterface, \Serializable
      * @ORM\Column(name="last_name", type="string", length=255, nullable=TRUE)
      */
     public $last_name;
-
+	
+	/**
+     * @var string $company
+     *
+     * @ORM\Column(name="company", type="string", length=255, nullable=TRUE)
+     */
+    public $company;
+	
+	/**
+     * @var string $title
+     *
+     * @ORM\Column(name="title", type="string", length=255, nullable=TRUE)
+     */
+    public $title;
+	
     /**
      * @var string $street_1
      *
@@ -129,6 +143,13 @@ class Member extends SuperEntity implements UserInterface, \Serializable
      * @ORM\Column(name="salt", type="string", length=255, nullable=TRUE)
      */
     protected $salt;
+	
+	/**
+     * @var integer $display_order
+     *
+     * @ORM\Column(name="display_order", type="integer", nullable=TRUE)
+     */
+    public $display_order;
 	
 	/**
      * @var integer $file_id
@@ -561,11 +582,15 @@ class Member extends SuperEntity implements UserInterface, \Serializable
 		
 		parent::setValue($key, $value);
 		
-		if($key == 'file_id'){
+		if($key == 'file_id' || $key == 'file'){
 			
 			if($value){
 			
 				$file = $this->em->getReference('\BRS\FileBundle\Entity\File', $value);
+				
+				$parent = $this->em->getRepository('BRSFileBundle:File')->getRootByName('Members');
+				
+				$file->setParent($parent);
 				
 				$this->setfile($file);
 			}

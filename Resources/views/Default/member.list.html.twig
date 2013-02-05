@@ -1,0 +1,5 @@
+<ul>
+	{% for member in members %}
+		<li id="member__{{member.id}}" data-id="{{member.id}}"><a href="">{{member.first_name}} {{member.last_name}}</a></li>
+	{% endfor %}
+</ul>

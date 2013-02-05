@@ -21,20 +21,29 @@ class MemberForm extends EditFormWidget
 		
 		$edit_fields = array(
 			
-			'info' => array(
-			
+			'image' => array(
+				
 				'type' => 'group',
+				'class' => 'form-group-right',
 				'fields' => array(
-					
-					/*'file_id' => array(
+
+					'file_id' => array(
 						'type' => new FileUploadType(),
 						'required' => false,
 						'attr' => array(
 							'max_file_size' => (int)ini_get('upload_max_filesize') * 1024 * 1024,
+							'parent_folder' => 'Members',
 						),
 						'multiple' => false,
-					),*/
-					
+					),
+				),
+			),
+			
+			'info' => array(
+				
+				'type' => 'group',
+				'fields' => array(
+						
 					'first_name' => array(
 						'type' => 'text',
 						'required' => true,
@@ -60,7 +69,22 @@ class MemberForm extends EditFormWidget
 					),
 				),
 			),
-
+			
+			'company_title' => array(
+			
+				'type' => 'group',
+				'fields' => array(
+			
+					'company' => array(
+						'type' => 'text',
+					),
+					
+					'title' => array(
+						'type' => 'text',
+					),
+				),
+			),
+			
 			'street' => array(
 			
 				'type' => 'group',

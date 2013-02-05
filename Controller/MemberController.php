@@ -56,4 +56,32 @@ class MemberController extends WidgetController
 			
         return $values;
     }
+	
+	/**
+     * @Route("/list")
+     * @Template("BRSMemberBundle:Default:member.list.html.twig")
+     */
+    public function memberListAction()
+    {
+ 			
+		$template = $this->getQuery('template');	
+			
+ 		$repo = $this->getRepository('BRSMemberBundle:Member');
+			
+        $members = $repo->findBy(array(),array());
+		
+		$values = array(
+			'members' => $members,
+		);
+		
+		if($template){
+			
+			return $this->response($this->renderTemplate($template, $values));
+			
+		}else{
+		
+     	   return $values;
+		}
+    }
+	
 }

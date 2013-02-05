@@ -76,6 +76,7 @@ class MemberAdminController extends AdminController
 		$this->addWidget($search_widget, 'search_members');
 		
 		$list_widget = new MemberList();
+		$list_widget->setReorderField('display_order');
 		$list_widget->setSearchWidget($search_widget);
 		$this->addWidget($list_widget, 'list_members');
 		
