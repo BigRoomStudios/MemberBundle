@@ -68,7 +68,7 @@ class MemberController extends WidgetController
 			
  		$repo = $this->getRepository('BRSMemberBundle:Member');
 			
-        $members = $repo->findBy(array(),array());
+        $members = $repo->findBy(array(),array('display_order' => 'ASC'));
 		
 		$values = array(
 			'members' => $members,
